@@ -11,7 +11,8 @@ $manager = getMongoDbManager();
 
 // @todo implementez la récupération des données dans la variable $list
 // petite aide : https://github.com/VSG24/mongodb-php-examples
-$collection = (new MongoDB\Client("mongodb://zz3f3:easyma@tpmongo-mongodb:27017/?authSource=admin"))->tp->tp;
+$client = new MongoDB\Client("mongodb://{$_ENV['MDB_USER']}:{$_ENV['MDB_PASS']}@{$_ENV['MDB_SRV']}:{$_ENV['MDB_PORT']}/?authSource=admin");
+$collection = $client->selectDatabase($_ENV['MDB_DB'])->tp;
 
 $page = $_GET['page'] ?? 1;
 $search = $_GET['search'] ?? '';

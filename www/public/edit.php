@@ -4,8 +4,8 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 $twig = getTwig();
-$client = new MongoDB\Client("mongodb://zz3f3:easyma@tpmongo-mongodb:27017/?authSource=admin");
-$collection = $client->tp->tp;
+$client = new MongoDB\Client("mongodb://{$_ENV['MDB_USER']}:{$_ENV['MDB_PASS']}@{$_ENV['MDB_SRV']}:{$_ENV['MDB_PORT']}/?authSource=admin");
+$collection = $client->selectDatabase($_ENV['MDB_DB'])->tp;
 $id = $_GET['id'] ?? null;
 if (!empty($_POST) && $id) {
 	$data = [
