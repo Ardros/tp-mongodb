@@ -3,5 +3,14 @@
 {% block title %}Document ""{% endblock %}
 {% block content %}
     <p>&larr;&nbsp;<a href="/index.php">Retourner à la liste</a></p>
-    affichez le contenu d'un document de la liste
+    {% if entity %}
+        <ul>
+            <li><strong>Titre :</strong> {{ entity.titre }}</li>
+            <li><strong>Auteur :</strong> {{ entity.auteur }}</li>
+            <li><strong>Cote :</strong> {{ entity.cote }}</li>
+            <li><strong>Siècle :</strong> {{ entity.siecle }}</li>
+        </ul>
+    {% else %}
+        <p>Document non trouvé.</p>
+    {% endif %}
 {% endblock %}
